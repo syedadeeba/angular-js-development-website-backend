@@ -1,0 +1,66 @@
+package com.niit.Dao;
+
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
+
+import com.niit.Model.BlogComment;
+import com.niit.Model.BlogPost;
+
+@Repository
+public class BlogPostDaoImpl implements BlogPostDao {
+
+	private SessionFactory sessionFactory;
+
+	public void saveBlogPost(BlogPost blogPost) {
+		Session session = sessionFactory.openSession();
+		session.save(blogPost);
+		session.flush();
+		session.close();
+
+	}
+
+	public List<BlogPost> getAllBlogs(int approved) {
+		Session session = sessionFactory.openSession();
+		Query query = session.createQuery("from BlogPost where approved=" + approved);
+		List<BlogPost> blogPosts = query.list();
+		session.close();
+		return blogPosts;
+	}
+
+	public BlogPost getBlogById(int id) {
+		Session session = sessionFactory.openSession();
+		BlogPost blogPost = (BlogPost) session.get(BlogPost.class, id);
+		session.close();
+		return blogPost;
+	}
+
+	public void updateBlogPost(BlogPost blogPost) {
+		Session session = sessionFactory.openSession();
+		session.update(blogPost);
+		session.flush();
+		session.close();
+
+	}
+
+	public void addComment(BlogComment blogComment) {
+		Session session = sessionFactory.openSession();
+		session.save(blogComment);
+		session.flush();
+		session.close();
+
+	}
+
+	public List<BlogComment> getBlogComments(int blogId) {
+		Session session = sessionFactory.openSession();
+		Query query=session.createQuery("from BlogComment where blogPost.id="+blogId); 		// select from blogpost where id=blogid
+		List<BlogComment> blogComments = query.list();            							// select * from blogcomments where blogpostid=
+		System.out.println(blogComments);
+		session.close();
+		return blogComments;
+	}
+
+}
