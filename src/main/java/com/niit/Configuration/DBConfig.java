@@ -47,7 +47,7 @@ public class DBConfig {
 																	// different
 		dataSource.setUsername("workspace"); // change the value if it is
 											// different
-		dataSource.setPassword("tiger"); // change the password if it is
+		dataSource.setPassword("TIGER"); // change the password if it is
 		// different
 		return dataSource;
 	}

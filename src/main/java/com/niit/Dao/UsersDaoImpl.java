@@ -17,7 +17,7 @@ public class UsersDaoImpl implements UsersDao {
 
 	public void registration(Users users) {
 		Session session = sessionFactory.openSession();
-		session.save(users);
+		session.saveOrUpdate(users);
 		session.flush();
 		session.close();
 
