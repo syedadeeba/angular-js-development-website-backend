@@ -59,7 +59,7 @@ public class FriendDaoImpl implements FriendDao {
 		Query query = session.createQuery("from Friend where fromId=? and toId=?");
 		query.setString(0, fromId);
 		query.setString(1, toId);
-		Friend friend = (Friend) query.uniqueResult();
+		Friend friend = (Friend)query.uniqueResult();
 		friend.setStatus(status); // status can be either 'A' or 'D'
 		session.update(friend);
 		session.flush();
@@ -73,7 +73,7 @@ public class FriendDaoImpl implements FriendDao {
 		query.setString(0, username);
 		query.setString(1, username);
 		query.setCharacter(2, 'A');
-		List<Friend> friends = query.list();
+		List<Friend> friends=query.list();
 		session.close();
 		return friends;
 

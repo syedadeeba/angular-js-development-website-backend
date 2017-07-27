@@ -23,9 +23,9 @@ public class FriendController {
 	@Autowired
 	private FriendDao friendDao;
 
-	@RequestMapping(value = "/suggesteduserslist", method = RequestMethod.GET)
+	@RequestMapping(value ="/suggesteduserslist", method=RequestMethod.GET)
 	public ResponseEntity<?> getSuggestedUsersList(HttpSession session) {
-		Users users = (Users) session.getAttribute("user");
+		Users users = (Users)session.getAttribute("user");
 		if (users == null) {
 			Error error = new Error(3, "UnAuthorized user");
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
@@ -34,22 +34,22 @@ public class FriendController {
 		return new ResponseEntity<List<Users>>(suggestedUsers, HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/friendrequest/{toUsername}")
+	@RequestMapping(value ="/friendrequest/{toUsername}")
 	public ResponseEntity<?> friendRequest(@PathVariable String toUsername, HttpSession session) {
 		Users users = (Users) session.getAttribute("user");
 		if (users == null) {
 			Error error = new Error(3, "UnAuthorized user");
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
 		}
-		String fromUsername = users.getUsername();
+		String fromUsername=users.getUsername();
 		friendDao.friendRequest(fromUsername, toUsername);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/pendingrequests", method = RequestMethod.GET)
 	public ResponseEntity<?> pendingRequests(HttpSession session) {
-		Users users = (Users) session.getAttribute("user");
-		if (users == null) {
+		Users users = (Users)session.getAttribute("user");
+		if (users==null) {
 			Error error = new Error(3, "UnAuthorized user");
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
 		}
@@ -70,7 +70,7 @@ public class FriendController {
 	
 	@RequestMapping(value = "/listoffriends", method = RequestMethod.GET)
 	public ResponseEntity<?> listOfFriends(HttpSession session) {
-		Users users = (Users) session.getAttribute("user");
+		Users users = (Users)session.getAttribute("user");
 		if (users == null) {
 			Error error = new Error(3, "UnAuthorized user");
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);

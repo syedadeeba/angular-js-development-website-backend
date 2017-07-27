@@ -55,9 +55,9 @@ public class BlogController {
 	 *         http://localhost:9005/backend_project2/listofblogs/1
 	 */
 
-	@RequestMapping(value = "/listofblogs/{approved}", method = RequestMethod.GET)
+	@RequestMapping(value = "/listofblogs/{approved}",method = RequestMethod.GET)
 	public ResponseEntity<?> getAllBlogs(@PathVariable int approved, HttpSession session) {
-		Users users = (Users) session.getAttribute("user");
+		Users users=(Users)session.getAttribute("user");
 		if (users == null) {
 			Error error = new Error(3, "UnAuthorized user");
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
@@ -68,7 +68,7 @@ public class BlogController {
 
 	@RequestMapping(value = "/getblogpost/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getBlogPost(@PathVariable int id, HttpSession session) {
-		Users users = (Users) session.getAttribute("user");
+		Users users = (Users)session.getAttribute("user");
 		if (users == null) {
 			Error error = new Error(3, "UnAuthorized user");
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
@@ -88,7 +88,7 @@ public class BlogController {
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/addblogcomment", method = RequestMethod.POST)
+	@RequestMapping(value="/addblogcomment", method = RequestMethod.POST)
 	public ResponseEntity<?> addBlogComment(@RequestBody BlogComment blogComment, HttpSession session) {
 		Users users = (Users) session.getAttribute("user");
 		if (users == null) {
@@ -109,9 +109,9 @@ public class BlogController {
 	}
 
 	@RequestMapping(value = "/getblogcomments/{blogId}", method = RequestMethod.GET)
-	public ResponseEntity<?> getBlogComents(@PathVariable int blogId, HttpSession session) {
+	public ResponseEntity<?> getBlogComments(@PathVariable int blogId, HttpSession session) {
 		System.out.println("ENTERING GETBLOGCOMMENTS");
-		Users users = (Users) session.getAttribute("user");
+		Users users = (Users)session.getAttribute("user");
 		if (users == null) {
 			Error error = new Error(3, "UnAuthorized user");
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);

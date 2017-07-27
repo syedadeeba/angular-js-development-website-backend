@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class BlogComment {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	@ManyToOne
 	@JoinColumn(name = "username")
