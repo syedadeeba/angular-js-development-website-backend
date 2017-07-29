@@ -12,20 +12,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "blogcomment_batch19")
+@Table(name="blogcomment_batch19")
 public class BlogComment {
-
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	@ManyToOne
-	@JoinColumn(name = "username")
+	@JoinColumn(name="username")
 	private Users commentedBy;
 	private Date commentedOn;
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	@JoinColumn(name = "blogpost_id")
+	@JoinColumn(name="blogpost_id")
 	
 	private BlogPost blogPost;
 	private String body;
@@ -71,3 +69,4 @@ public class BlogComment {
 	}
 
 }
+

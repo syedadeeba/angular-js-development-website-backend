@@ -1,6 +1,7 @@
 package com.niit.Model;
 
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,18 +11,17 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name = "blogpost_batch19")
+@Table(name="blogpost_batch19")
 public class BlogPost {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String title;
 	@Lob
 	private String description;
 	@ManyToOne
-	@JoinColumn(name = "username")
+	@JoinColumn(name="username")
 	private Users createdBy;
 	private Date postedOn;
 	private boolean approved;
@@ -75,3 +75,4 @@ public class BlogPost {
 	}
 
 }
+
