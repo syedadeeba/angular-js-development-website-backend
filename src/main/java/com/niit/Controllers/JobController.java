@@ -53,27 +53,27 @@ public class JobController {
 		}
 
 		@RequestMapping(value="/getalljobs",method=RequestMethod.GET)
-			public ResponseEntity<?> getAllJobs(HttpSession session){
-				Users users=(Users)session.getAttribute("user");
-				if(users==null)
-				{
-					Error error=new Error(3,"UnAuthorized user");
-					return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
-				}
-				List<Job> jobs=jobDao.getAllJobs();
-				return new ResponseEntity<List<Job>>(jobs,HttpStatus.OK);
-	
-		}
-		
-		@RequestMapping(value="/getjobbyid/(id)",method=RequestMethod.GET)
-		public ResponseEntity<?> getJobById(@PathVariable int id,HttpSession session){
+		public ResponseEntity<?> getAllJobs(HttpSession session){
 			Users users=(Users)session.getAttribute("user");
 			if(users==null)
 			{
 				Error error=new Error(3,"UnAuthorized user");
 				return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 			}
-			Job job=jobDao.getJobById(id);
-			return new ResponseEntity<Job>(job,HttpStatus.OK);
+			List<Job> jobs=jobDao.getAllJobs();
+			return new ResponseEntity<List<Job>>(jobs,HttpStatus.OK);
+
+	}
+	
+	@RequestMapping(value="/getjobbyid/(id)",method=RequestMethod.GET)
+	public ResponseEntity<?> getJobById(@PathVariable int id,HttpSession session){
+		Users users=(Users)session.getAttribute("user");
+		if(users==null)
+		{
+			Error error=new Error(3,"UnAuthorized user");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}
+		Job job=jobDao.getJobById(id);
+		return new ResponseEntity<Job>(job,HttpStatus.OK);
+	}
 }
