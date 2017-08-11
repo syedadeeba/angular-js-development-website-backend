@@ -65,7 +65,7 @@ public class JobController {
 
 	}
 	
-	@RequestMapping(value="/getjobbyid/(id)",method=RequestMethod.GET)
+	@RequestMapping(value="/getjobbyid/{id}",method=RequestMethod.GET)
 	public ResponseEntity<?> getJobById(@PathVariable int id,HttpSession session){
 		Users users=(Users)session.getAttribute("user");
 		if(users==null)
