@@ -58,13 +58,13 @@ public class FriendController {
 	}
 
 	@RequestMapping(value = "/updatependingrequest/{fromId}/{status}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updatePendingRequests(@PathVariable String fromId,@PathVariable char Status, HttpSession session) {
+	public ResponseEntity<?> updatePendingRequests(@PathVariable String fromId,@PathVariable char status, HttpSession session) {
 		Users users = (Users) session.getAttribute("user");
 		if (users == null) {
 			Error error = new Error(3, "UnAuthorized user");
 			return new ResponseEntity<Error>(error, HttpStatus.UNAUTHORIZED);
 		}
-		friendDao.updatePendingRequest(fromId, users.getUsername(), Status);
+		friendDao.updatePendingRequest(fromId, users.getUsername(), status);
 		return new ResponseEntity<Void>(HttpStatus.OK);
 	}
 	

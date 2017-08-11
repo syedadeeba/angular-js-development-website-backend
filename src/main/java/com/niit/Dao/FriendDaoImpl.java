@@ -21,7 +21,7 @@ public class FriendDaoImpl implements FriendDao {
 	public List<Users> listOfSuggestedUsers(String username) {
 		Session session = sessionFactory.openSession();
 		SQLQuery sqlQuery = session.createSQLQuery(
-				"select * from users_batch19 where username in (select username from users_batch19 where username!=? minus (select fromid from friend_batch19 where toId=? union select toId from friend_batch19 where fromId=?))");
+				"select * from users_batch19 where username in (select username from users_batch19 where username!=? minus (select fromId from friend_batch19 where toId=? union select toId from friend_batch19 where fromId=?))");
 		sqlQuery.setString(0, username);
 		sqlQuery.setString(1, username);
 		sqlQuery.setString(2, username);
